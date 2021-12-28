@@ -1,0 +1,130 @@
+{
+    "info":"This file is used to simulate catalogue/database for all products for sale",
+    "productList":[
+        {
+            "ID":"100000001",
+            "category":"gaming",
+            "MSRP":1000000,
+            "name":"Some Shiny Cardboard",
+            "description":"TBD",
+            "image":"Items/shinycardboard.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":900,
+            "quantity":10
+        },
+        {
+            "ID":"100000002",
+            "category":"sports",
+            "MSRP":9700,
+            "name":"McDavid Leafs Jersey",
+            "description":"TBD",
+            "image":"Items/leafsjersey.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":800,
+            "quantity":10
+        },
+        {
+            "ID":"100000003",
+            "category":"computer",
+            "MSRP":10000000,
+            "name":"nVidia GeForce RTX 3090",
+            "description":"TBD",
+            "image":"Items/3090.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":700,
+            "quantity":10
+        },
+        {
+            "ID":"100000004",
+            "category":"game",
+            "MSRP":2500,
+            "name":"Gamer T-Shirt",
+            "description":"TBD",
+            "image":"Items/gamer.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":600,
+            "quantity":10
+        },
+        {
+            "ID":"100000005",
+            "category":"game",
+            "MSRP":25,
+            "name":"Steam Siege Booster Pack",
+            "description":"TBD",
+            "image":"Items/steamsiege.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":600,
+            "quantity":10
+        },
+        {
+            "ID":"100000006",
+            "category":"game",
+            "MSRP":2500,
+            "name":"Shiny Cardboard but Graded",
+            "description":"TBD",
+            "image":"Items/chariz.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":600,
+            "quantity":10
+        },
+        {
+            "ID":"100000007",
+            "category":"game",
+            "MSRP":8000,
+            "salePrice":6900,
+            "name":"Fortnite Chug Jug",
+            "description":"TBD",
+            "image":"Items/chugjug.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":600,
+            "quantity":10
+        },
+        {
+            "ID":"100000008",
+            "category":"game",
+            "MSRP":4000,
+            "salePrice":3000,
+            "name":"Neon Gaming Lamp",
+            "description":"TBD",
+            "image":"Items/gaminglamp.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":600,
+            "quantity":10
+        },
+        {
+            "ID":"100000009",
+            "category":"game",
+            "MSRP":100000,
+            "salePrice":500,
+            "name":"Apple Stickers - Set of 4",
+            "description":"TBD",
+            "image":"Items/applestk.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":600,
+            "quantity":10
+        },
+        {
+            "ID":"100000010",
+            "category":"game",
+            "MSRP":20000,
+            "salePrice":19900,
+            "name":"Gaming Face Mask",
+            "description":"TBD",
+            "image":"Items/gmask.png",
+            "active":true,
+            "siteDiscount":100,
+            "priority":600,
+            "quantity":10
+        }
+    ]
+
+}
