@@ -1,15 +1,43 @@
 import React, { useState } from 'react';
 import "../html/style.css";
 import ReactDom from 'react-dom';
-import Popup from 'react-popup';
+import Popup from "./popup";
+import {Nav, NavLink, NavMenu, NavBtn, NavBtnLink} from './Navbar/NavbarElements';
+
 const productCatalog = require("../config/catalogue.json");
 
 const ProductListing = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const togglePop = () => {
+      setIsOpen(!isOpen);
+    }
+
+    const [isErrorOpen, setIsErrorOpen] = useState(false);
+    const toggleError = () => {
+        setIsErrorOpen(!isErrorOpen);
+    }
+
+    let cartCopy = JSON.parse(localStorage.getItem("cart"));
+    var cartItem = {
+        itemInfo: null,
+        itemQuantity: null
+    };
+
+    for(let product of productCatalog.productList){
+        if(cartCopy[cartCopy.length - 1].ID === product.ID){
+            cartItem.itemInfo = product;
+            cartItem.itemQuantity = cartCopy[cartCopy.length - 1].quantity;
+        }
+    }
+    var popImage = <img class="popupimage" src={cartItem.itemInfo.image}/>;
+    var popText = <p>{cartItem.itemQuantity}x {cartItem.itemInfo.name} added to cart</p>;
+    var popPrice = <p>${cartItem.itemQuantity * (cartItem.itemInfo.MSRP / 100)} total</p>;
+
     function addToCart(ID, quant){
         for(let product of productCatalog.productList){
             if(ID === product.ID){
                 if(quant > product.quantity){
-                    alert("You can only add a maximum of "+product.quantity+" items to your cart.");
+                    toggleError();
                     break;
                 }
                 else{
@@ -18,19 +46,19 @@ const ProductListing = () => {
                         quantity: parseInt(quant)
                     };
                     addItem(item);
-                    alert(localStorage.getItem("cart") + "Added to cart");
+                    togglePop();
                     break;
                 }
             }
         }
     }
     
-    let [cart, setCart] = useState([]) 
+    let [cart, setCart] = useState([]); 
     let localCart = localStorage.getItem("cart");
-    const updateItem = (itemID, amount) => {}
-    const removeItem = (itemID) => {}
+    const updateItem = (itemID, amount) => {};
+    const removeItem = (itemID) => {};
   
-    const addItem = (item) => {  
+    function addItem(item) {  
         //create a copy of our cart state, avoid overwritting existing state
         let cartCopy = [...cart];       
         //assuming we have an ID field in our item
@@ -132,7 +160,6 @@ const ProductListing = () => {
                     </center>
                 </div>
             }
-
         </div>
     );
 
@@ -141,6 +168,34 @@ const ProductListing = () => {
             <h1>Popular Items</h1>
 
             {productDisplayList}
+            {isOpen && <Popup
+                content={<>
+                    <h2>Cart Notification</h2>
+                    <center>
+                        {popImage}
+                        {popText}
+                        {popPrice}
+                        <Nav>
+                        <NavLink to='/cart'> 
+                            Cart
+                        </NavLink>
+                        <NavLink to='/cart'> 
+                            Checkout
+                        </NavLink>
+                        </Nav>
+                    </center>
+                </>}
+                handleClose={togglePop}
+            />}
+            {isErrorOpen && <Popup
+                content={<>
+                    <h2>ERROR</h2>
+                    <center>
+                        <p>There not enough items in stock.</p>
+                    </center>
+                </>}
+                handleClose={toggleError}
+            />}
         </>
     )
 }

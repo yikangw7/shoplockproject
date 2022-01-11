@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from './Components/home';
@@ -14,21 +13,24 @@ function App() {
     color: "white",
     "font-size": "15px"
   }
+
+  var cart = {
+      items: null
+  }
+
   return (
     <Router>
-
       <div className="App">
         <Navigation />
         <Switch>
-          <Route path='/shop' component={Shop}/> 
-          <Route path='/sale' component={Sale}/> 
-          <Route path='/contact-us' component={Contact}/> 
-          <Route path='/cart' component={Cart}/> 
-          <Route path='/account' component={Account}/> 
-          <Route path='/' component={Home}/>   
+          <Route cart={cart} path='/shop' component={Shop}/> 
+          <Route cart={cart} path='/sale' component={Sale}/> 
+          <Route cart={cart} path='/contact-us' component={Contact}/> 
+          <Route cart={cart} path='/cart' component={Cart}/> 
+          <Route cart={cart} path='/account' component={Account}/> 
+          <Route cart={cart} path='/' component={Home}/>   
         </Switch>
-      </div>
-      
+      </div>     
       <div class="subscribe">
                 <h2>Subscribe to our newsletter!</h2>
                 <div class="wrap">
