@@ -18,17 +18,19 @@ function App() {
       items: null
   }
 
+  var propTest = "test";
+
   return (
     <Router>
       <div className="App">
         <Navigation />
         <Switch>
-          <Route cart={cart} path='/shop' component={Shop}/> 
-          <Route cart={cart} path='/sale' component={Sale}/> 
-          <Route cart={cart} path='/contact-us' component={Contact}/> 
-          <Route cart={cart} path='/cart' component={Cart}/> 
-          <Route cart={cart} path='/account' component={Account}/> 
-          <Route cart={cart} path='/' component={Home}/>   
+          <Route path='/shop' component={Shop}/> 
+          <Route path='/sale' component={Sale}/> 
+          <Route path='/contact-us' component={Contact}/> 
+          <Route path='/cart' component={Cart}/> 
+          <Route path='/account' component={Account}/> 
+          <Route path='/' render={(props) => (<Home {... props} cart={propTest}/>)}/>   
         </Switch>
       </div>     
       <div class="subscribe">

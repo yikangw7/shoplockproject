@@ -263,6 +263,12 @@ body {
 	height: 250px;
 }
 
+.column6 {
+	float: left;
+	width: 23.7%;
+	height: 450px;
+}
+
 .row:after {
 	content: "";
 	display: table;
@@ -378,4 +384,9 @@ body {
 
 .cartbottom {
 	margin: 30px 0px;
+}
+
+.sort {
+	float: right;
+	margin: 0px 10px;
 }

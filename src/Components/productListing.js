@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import "../html/style.css";
-import ReactDom from 'react-dom';
 import Popup from "./popup";
-import {Nav, NavLink, NavMenu, NavBtn, NavBtnLink} from './Navbar/NavbarElements';
+import {Nav, NavLink} from './Navbar/NavbarElements';
 
 const productCatalog = require("../config/catalogue.json");
 
 const ProductListing = () => {
+    // Popup state
     const [isOpen, setIsOpen] = useState(false);
     const togglePop = () => {
       setIsOpen(!isOpen);
     }
-
     const [isErrorOpen, setIsErrorOpen] = useState(false);
     const toggleError = () => {
         setIsErrorOpen(!isErrorOpen);
     }
 
+    // Cart
     let cartCopy = JSON.parse(localStorage.getItem("cart"));
     var cartItem = {
         itemInfo: null,
@@ -29,6 +29,8 @@ const ProductListing = () => {
             cartItem.itemQuantity = cartCopy[cartCopy.length - 1].quantity;
         }
     }
+
+    // Popup data
     var popImage = <img class="popupimage" src={cartItem.itemInfo.image}/>;
     var popText = <p>{cartItem.itemQuantity}x {cartItem.itemInfo.name} added to cart</p>;
     var popPrice = <p>${cartItem.itemQuantity * (cartItem.itemInfo.MSRP / 100)} total</p>;
@@ -54,28 +56,19 @@ const ProductListing = () => {
     }
     
     let [cart, setCart] = useState([]); 
-    let localCart = localStorage.getItem("cart");
-    const updateItem = (itemID, amount) => {};
-    const removeItem = (itemID) => {};
-  
     function addItem(item) {  
-        //create a copy of our cart state, avoid overwritting existing state
         let cartCopy = [...cart];       
-        //assuming we have an ID field in our item
         let {ID} = item;      
-        //look for item in cart array
         let existingItem = cartCopy.find(cartItem => cartItem.ID == ID);        
-        //if item already exists
         if (existingItem) {
-            existingItem.quantity += item.quantity //update item
-        } else { //if item doesn't exist, simply add it
-          cartCopy.push(item)
+            existingItem.quantity += item.quantity;
+        } 
+        else {
+          cartCopy.push(item);
         }        
-        //update app state
-        setCart(cartCopy)       
-        //make cart a string and store in local space
+        setCart(cartCopy);  
         let stringCart = JSON.stringify(cartCopy);
-        localStorage.setItem("cart", stringCart)    
+        localStorage.setItem("cart", stringCart);    
     }
   
     const listingStyle = {
@@ -83,12 +76,7 @@ const ProductListing = () => {
         width: "250px"
     }
 
-    var regularPricedProductList;
-
-    //get total numbrer of products
-    // var totalNumberOfProduct = productCatalog.productList.length;
-    // var numberOfRows = (totalNumberOfProduct % 3) === 0 ? totalNumberOfProduct / 3 : (totalNumberOfProduct / 3) + 1;
-
+    // Process JSON data into HTML 
     var productRows = [];
     var productIncludedCount = 0;
 
@@ -97,9 +85,9 @@ const ProductListing = () => {
         center: null,
         right: null
     };
-    //assuming 3 products will be displayed every row
+    // assuming 3 products will be displayed every row
     for (let product of productCatalog.productList) {
-        //only include product without salePrice
+        // only include product without salePrice
         if (product.salePrice == null) {
 
             if (productIncludedCount % 3 === 0)
@@ -115,15 +103,14 @@ const ProductListing = () => {
                     left: null,
                     center: null,
                     right: null
-                };;
+                };
             }
             productIncludedCount++;
         }
     }
 
-    if (productIncludedCount % 3 > 0) {
+    if (productIncludedCount % 3 > 0) 
         productRows.push(rowList);
-    }
 
     var productDisplayList = productRows.map((element) =>
         <div class="row">

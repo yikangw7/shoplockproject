@@ -6,26 +6,7 @@ const pictureStyle = {
     height: "250px"
 }
 
-const accountStyle = {
-    width: "24px",
-    height: "24px"
-}
-
-const cartStyle = {
-    width: "24px",
-    height: "24px"
-}
-
-const searchStyle = {
-    width: "15px",
-    height: "15px"
-}
-
-const slideStyle = {
-    width: "100%"
-}
-
-const Home = () => {
+const Home = props => {
     var i;
     i = 0;
 
@@ -35,6 +16,7 @@ const Home = () => {
 
             <div class="gray">
                 <h1>Featured Items</h1>
+                <h2>{props.cart}</h2>
                 <div class="row">
                     <div class="column2">
                         <center>
